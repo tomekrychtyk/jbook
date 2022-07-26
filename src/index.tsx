@@ -6,7 +6,6 @@ import { fetchPlugin } from "./plugins/fetch-plugin";
 
 const App = () => {
   const [input, setInput] = useState("");
-  const [code, setCode] = useState("");
   const ref = useRef<any>();
   const iframe = useRef<any>();
 
@@ -26,6 +25,8 @@ const App = () => {
       return;
     }
 
+    iframe.current.srcdoc = html;
+
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
@@ -37,7 +38,6 @@ const App = () => {
       },
     });
 
-    // setCode(result.outputFiles[0].text);
     iframe.current.contentWindow.postMessage(result.outputFiles[0].text, "*");
   };
 
@@ -70,7 +70,6 @@ const App = () => {
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <pre>{code}</pre>
       <iframe
         ref={iframe}
         title="codeEditor"
