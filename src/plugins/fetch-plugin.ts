@@ -2,7 +2,7 @@ import * as esbuild from "esbuild-wasm";
 import axios from "axios";
 import localForage from "localforage";
 
-export const fetchPlugin = (inputCode: string) => {
+export const fetchPlugin = (inputCode: string | undefined) => {
   const fileCache = localForage.createInstance({
     name: "filecache",
   });

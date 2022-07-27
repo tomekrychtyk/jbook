@@ -6,7 +6,7 @@ import { fetchPlugin } from "./plugins/fetch-plugin";
 import CodeEditor from "./components/codeEditor";
 
 const App = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string | undefined>("");
   const ref = useRef<any>();
   const iframe = useRef<any>();
 
@@ -64,7 +64,12 @@ const App = () => {
 
   return (
     <div>
-      <CodeEditor />
+      <CodeEditor
+        onChange={(value) => {
+          setInput(value);
+        }}
+        initialValue="const b = 7;"
+      />
       <textarea
         onChange={(e) => setInput(e.target.value)}
         value={input}
