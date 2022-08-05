@@ -1,6 +1,17 @@
-# Getting Started with Create React App
+# jBook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+App that lets you transpile and run your code in the browser.
+
+## To-Do List
+
+- [x] Set up the environment
+- [x] Code transpiling in the browser
+- [x] In-Browser bundling
+- [x] Dynamic fetching and loading of NPM modules
+- [x] Caching the imported packages
+- [x] Safely handling untrusted code via an iframe
+- [x] Display code editor in the React app
+- [ ] Draggable resizing components
 
 ## Available Scripts
 
@@ -44,4 +55,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
 # jbook
