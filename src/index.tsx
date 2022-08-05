@@ -4,11 +4,12 @@ import * as esbuild from "esbuild-wasm";
 import { unpkgPathPlugin } from "./plugins/unpkg-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
 import CodeEditor from "./components/codeEditor";
+import { Preview } from "./components/Preview";
 
 const App = () => {
   const [input, setInput] = useState<string | undefined>("");
+  const [code, setCode] = useState<string>("");
   const ref = useRef<any>();
-  const iframe = useRef<any>();
 
   const startService = async () => {
     ref.current = await esbuild.startService({
@@ -26,8 +27,6 @@ const App = () => {
       return;
     }
 
-    iframe.current.srcdoc = html;
-
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
@@ -39,28 +38,8 @@ const App = () => {
       },
     });
 
-    iframe.current.contentWindow.postMessage(result.outputFiles[0].text, "*");
+    setCode(result.outputFiles[0].text);
   };
-
-  const html = `
-    <html>
-      <head></head>
-      <body>
-        <div id="root"></div>
-        <script>
-          window.addEventListener("message", (event) => {
-            try {
-              eval(event.data);
-            } catch(e) {
-              const root = document.getElementById('root');
-              root.innerHTML = '<div style="color:red"><h4>Runtime Error:</h4>' + e + '</div>';
-              console.err(e);
-            }
-          }, false)
-        </script>
-      </body>
-    </html>
-  `;
 
   return (
     <div>
@@ -70,19 +49,10 @@ const App = () => {
         }}
         initialValue="const b = 7;"
       />
-      <textarea
-        onChange={(e) => setInput(e.target.value)}
-        value={input}
-      ></textarea>
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <iframe
-        ref={iframe}
-        title="codeEditor"
-        srcDoc={html}
-        sandbox="allow-scripts"
-      />
+      <Preview code={code} />
     </div>
   );
 };
