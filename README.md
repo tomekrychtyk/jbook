@@ -11,7 +11,12 @@ App that lets you transpile and run your code in the browser.
 - [x] Caching the imported packages
 - [x] Safely handling untrusted code via an iframe
 - [x] Display code editor in the React app
+- [ ] Multi-editor support
 - [ ] Draggable resizing components
+- [ ] Add a markdown editor in React app
+- [ ] Better handling of state updates (Immer?)
+- [ ] Add Redux for global state management
+- [ ] Cumulative Code Execution
 
 ## Available Scripts
 
