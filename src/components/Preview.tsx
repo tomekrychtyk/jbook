@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 
 interface PreviewProps {
-  code: string;
+  code: string | undefined;
 }
 
 const html = `
