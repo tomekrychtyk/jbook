@@ -4,7 +4,7 @@ import MonacoEditor from "@monaco-editor/react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
-import "./codeEditor.css";
+import "./CodeEditor.css";
 
 interface CodeEditorProps {
   initialValue: string;

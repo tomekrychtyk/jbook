@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CodeEditor from "./codeEditor";
+import CodeEditor from "./CodeEditor";
 import { Preview } from "./Preview";
 import bundle from "../bundler";
 
